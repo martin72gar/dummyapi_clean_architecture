@@ -26,7 +26,7 @@ class UserDetailModel extends Equatable {
   late final String email;
   late final String dateOfBirth;
   late final String phone;
-  late final Location location;
+  late final LocationModel location;
   late final String registerDate;
   late final String updatedDate;
 
@@ -40,7 +40,7 @@ class UserDetailModel extends Equatable {
     email = json['email'];
     dateOfBirth = json['dateOfBirth'];
     phone = json['phone'];
-    location = Location.fromJson(json['location']);
+    location = LocationModel.fromJson(json['location']);
     registerDate = json['registerDate'];
     updatedDate = json['updatedDate'];
   }
@@ -76,8 +76,8 @@ class UserDetailModel extends Equatable {
       ];
 }
 
-class Location extends Equatable {
-  Location({
+class LocationModel extends Equatable {
+  LocationModel({
     required this.street,
     required this.city,
     required this.state,
@@ -91,7 +91,7 @@ class Location extends Equatable {
   late final String country;
   late final String timezone;
 
-  Location.fromJson(Map<String, dynamic> json) {
+  LocationModel.fromJson(Map<String, dynamic> json) {
     street = json['street'];
     city = json['city'];
     state = json['state'];

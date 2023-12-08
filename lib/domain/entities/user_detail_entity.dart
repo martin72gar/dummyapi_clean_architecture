@@ -26,7 +26,7 @@ class UserDetailEntity extends Equatable {
   late final String email;
   late final String dateOfBirth;
   late final String phone;
-  late final Location location;
+  late final LocationModel location;
   late final String registerDate;
   late final String updatedDate;
 
