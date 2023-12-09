@@ -1,4 +1,3 @@
-import 'package:clean_architecture/data/model/create_user_model.dart';
 import 'package:clean_architecture/domain/entities/create_user_entity.dart';
 import 'package:dartz/dartz.dart';
 import 'package:clean_architecture/domain/entities/user_entity.dart';
