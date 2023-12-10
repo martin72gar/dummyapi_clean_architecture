@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:clean_architecture/injection.dart' as get_it;
 
 void main() async {
   await dotenv.load(fileName: ".env");
+  get_it.initialize();
   runApp(const MyApp());
 }
 
