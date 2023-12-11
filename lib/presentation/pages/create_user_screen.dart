@@ -1,4 +1,5 @@
 import 'package:clean_architecture/common/enum_status.dart';
+import 'package:clean_architecture/common/my_routes.dart';
 import 'package:clean_architecture/data/model/request/create_user_request_model.dart';
 import 'package:clean_architecture/presentation/cubit/user/user_cubit.dart';
 import 'package:flutter/material.dart';
@@ -109,12 +110,30 @@ class CreateUserScreen extends StatelessWidget {
               ? const CircularProgressIndicator()
               : const Text("Create User"),
         ),
-        SizedBox(height: 10),
-        FilledButton(
-          onPressed: () {
-            debugPrint("post");
-          },
-          child: Text("Posts"),
+        SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            FilledButton(
+              onPressed: () {
+                debugPrint("users");
+              },
+              child: Text("Users"),
+            ),
+            FilledButton(
+              onPressed: () {
+                debugPrint("post");
+                Navigator.pushNamed(context, MyRoutes.listPostPage);
+              },
+              child: Text("Posts"),
+            ),
+            FilledButton(
+              onPressed: () {
+                debugPrint("comments");
+              },
+              child: Text("Comments"),
+            ),
+          ],
         )
       ],
     );

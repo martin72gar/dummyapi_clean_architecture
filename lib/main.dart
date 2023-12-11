@@ -1,7 +1,9 @@
+import 'package:clean_architecture/common/my_routes.dart';
 import 'package:clean_architecture/presentation/cubit/comment/comment_cubit.dart';
 import 'package:clean_architecture/presentation/cubit/post/post_cubit.dart';
 import 'package:clean_architecture/presentation/cubit/user/user_cubit.dart';
 import 'package:clean_architecture/presentation/pages/create_user_screen.dart';
+import 'package:clean_architecture/presentation/pages/post_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:clean_architecture/injection.dart' as get_it;
@@ -32,6 +34,20 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: const CreateUserScreen(),
+        initialRoute: MyRoutes.homePage,
+        onGenerateRoute: (routes) {
+          switch (routes.name) {
+            case MyRoutes.listPostPage:
+              return MaterialPageRoute(builder: (_) => PostScreen());
+            default:
+              return MaterialPageRoute(
+                  builder: (_) => Container(
+                        child: Center(
+                          child: Text('Halaman tidak ditemukan'),
+                        ),
+                      ));
+          }
+        },
       ),
     );
   }
