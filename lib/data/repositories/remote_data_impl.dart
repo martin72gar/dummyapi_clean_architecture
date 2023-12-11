@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:clean_architecture/data/datasource/remote_data.dart';
 import 'package:clean_architecture/data/model/comment_model.dart';
 import 'package:clean_architecture/data/model/create_user_model.dart';
 import 'package:clean_architecture/data/model/post_model.dart';
+import 'package:clean_architecture/data/model/request/create_user_request_model.dart';
 import 'package:clean_architecture/data/model/user_detail_model.dart';
 import 'package:clean_architecture/data/model/user_model.dart';
 import 'package:http/http.dart' as http;
@@ -16,18 +18,20 @@ class RemoteDataImpl implements RemoteData {
   RemoteDataImpl(this.client);
 
   @override
-  Future<CreateUserModel> createUserModel() async {
+  Future<dynamic> createUserModel(CreateUserRequestModel curm) async {
     final request = await http.post(Uri.parse('${Const.baseURL}user/create'),
         headers: {
           'app-id': Const.appId
         },
         body: {
-          "firstName": "Martin",
-          "lastName": "Siregar",
-          "email": "72garmartin@mail.com"
+          "firstName": curm.firstName,
+          "lastName": curm.lastName,
+          "email": curm.email
         });
 
     final response = jsonDecode(request.body);
+    log("response: $response");
+    return response;
     return CreateUserModel.fromJson(response);
   }
 

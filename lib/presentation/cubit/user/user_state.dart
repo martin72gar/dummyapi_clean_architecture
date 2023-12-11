@@ -12,38 +12,52 @@ final class UserInitial extends UserState {}
 final class UserListLoaded extends UserState {
   final List<UserEntity> list;
   final String message;
+  final EnumStatus enumStatus;
 
-  UserListLoaded(this.list, this.message);
+  const UserListLoaded(this.list, this.message, this.enumStatus);
 }
 
 final class UserListError extends UserState {
   final String message;
+  final EnumStatus enumStatus;
 
-  UserListError(this.message);
+  const UserListError(this.message, this.enumStatus);
 }
 
 final class UserDetailLoaded extends UserState {
   final UserDetailEntity user;
   final String message;
+  final EnumStatus enumStatus;
 
-  UserDetailLoaded(this.user, this.message);
+  const UserDetailLoaded(this.user, this.message, this.enumStatus);
 }
 
 final class UserDetailError extends UserState {
   final String message;
+  final EnumStatus enumStatus;
 
-  UserDetailError(this.message);
+
+  const UserDetailError(this.message, this.enumStatus);
+}
+
+final class UserCreateLoading extends UserState {
+  final String message;
+  final EnumStatus enumStatus;
+
+  const UserCreateLoading(this.message, this.enumStatus);
 }
 
 final class UserCreateSuccess extends UserState {
   final CreateUserEntity user;
   final String message;
+  final EnumStatus enumStatus;
 
-  UserCreateSuccess(this.user, this.message);
+  const UserCreateSuccess(this.user, this.message, this.enumStatus);
 }
 
 final class UserCreateFailed extends UserState {
   final String message;
+  final EnumStatus enumStatus;
 
-  UserCreateFailed(this.message);
+  const UserCreateFailed(this.message, this.enumStatus);
 }

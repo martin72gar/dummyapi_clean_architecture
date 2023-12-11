@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:clean_architecture/data/model/create_user_model.dart';
+import 'package:clean_architecture/data/model/request/create_user_request_model.dart';
 import 'package:clean_architecture/data/repositories/remote_data_impl.dart';
 import 'package:clean_architecture/domain/entities/create_user_entity.dart';
 import 'package:clean_architecture/domain/entities/user_entity.dart';
@@ -13,9 +16,16 @@ class UserBaseRepositoryImpl implements UserBaseRepository{
   UserBaseRepositoryImpl(this.remoteDataImpl);
 
   @override
-  Future<Either<String, CreateUserEntity>> createUser() async {
+  Future<Either<String, CreateUserEntity>> createUser(CreateUserRequestModel curm) async {
     try {
-      final result = await remoteDataImpl.createUserModel();
+      var result = await remoteDataImpl.createUserModel(curm);
+      log("result: ${result['error']}");
+      log("result: ${result['data']}");
+      if (result['error'] != null) {
+        return Left(result['data'].toString());
+      }
+
+      result = CreateUserModel.fromJson(result);
       return Right(result.toEntity());
     } catch(e) {
       return Left(e.toString());

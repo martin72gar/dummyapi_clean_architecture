@@ -1,3 +1,4 @@
+import 'package:clean_architecture/data/model/request/create_user_request_model.dart';
 import 'package:clean_architecture/domain/entities/user_entity.dart';
 import 'package:clean_architecture/domain/repositories/user_base_repository.dart';
 import 'package:dartz/dartz.dart';
@@ -30,7 +31,7 @@ class GetUserDetailUseCase extends UserUseCaseBase {
 class CreateUseUseCase extends UserUseCaseBase {
   CreateUseUseCase(super.userBaseRepository);
 
-  Future<Either<String, CreateUserEntity>> call() async {
-    return await userBaseRepository.createUser();
+  Future<Either<String, CreateUserEntity>> call(CreateUserRequestModel curm) async {
+    return await userBaseRepository.createUser(curm);
   }
 }
