@@ -27,7 +27,7 @@ void initialize() {
       () => CommentBaseRepositoryImpl(locator()));
 
   //repository remote data
-  locator.registerFactory<RemoteData>(() => RemoteDataImpl(locator()));
+  locator.registerFactory(() => RemoteDataImpl(locator()));
 
   //usecase
   locator.registerFactory(() => CreateUseUseCase(locator()));
