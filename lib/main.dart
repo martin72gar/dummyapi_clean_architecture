@@ -1,7 +1,7 @@
 import 'package:clean_architecture/presentation/cubit/comment/comment_cubit.dart';
 import 'package:clean_architecture/presentation/cubit/post/post_cubit.dart';
 import 'package:clean_architecture/presentation/cubit/user/user_cubit.dart';
-import 'package:clean_architecture/presentation/page/create_user_screen.dart';
+import 'package:clean_architecture/presentation/pages/create_user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:clean_architecture/injection.dart' as get_it;

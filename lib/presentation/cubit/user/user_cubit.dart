@@ -4,6 +4,7 @@ import 'package:clean_architecture/domain/entities/user_detail_entity.dart';
 import 'package:clean_architecture/domain/entities/user_entity.dart';
 import 'package:clean_architecture/domain/usecase/user_usecase.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 
 part 'user_state.dart';
 
@@ -11,6 +12,9 @@ class UserCubit extends Cubit<UserState> {
   final GetUserListUseCase getUserListUseCase;
   final GetUserDetailUseCase getUserDetailUseCase;
   final CreateUseUseCase createUseUseCase;
+  static final first = TextEditingController();
+  static final last = TextEditingController();
+  static final email = TextEditingController();
 
   UserCubit(
       this.getUserListUseCase, this.getUserDetailUseCase, this.createUseUseCase)
