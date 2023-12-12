@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
             default:
               return MaterialPageRoute(
                   builder: (_) => Container(
-                        child: Center(
+                        child: const Center(
                           child: Text('Halaman tidak ditemukan'),
                         ),
                       ));
