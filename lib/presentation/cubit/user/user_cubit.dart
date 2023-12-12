@@ -25,6 +25,7 @@ class UserCubit extends Cubit<UserState> {
       : super(UserInitial());
 
   getUserList() async {
+    emit(const UserListLoading(EnumStatus.loading));
     final result = await getUserListUseCase.call();
     result.fold((l) {
       emit(UserListError(l.toString(), EnumStatus.error));

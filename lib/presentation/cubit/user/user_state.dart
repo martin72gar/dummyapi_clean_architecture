@@ -9,6 +9,12 @@ sealed class UserState extends Equatable {
 
 final class UserInitial extends UserState {}
 
+final class UserListLoading extends UserState {
+  final EnumStatus enumStatus;
+
+  const UserListLoading(this.enumStatus);
+}
+
 final class UserListLoaded extends UserState {
   final List<UserEntity> list;
   final String message;

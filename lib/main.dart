@@ -4,6 +4,7 @@ import 'package:clean_architecture/presentation/cubit/post/post_cubit.dart';
 import 'package:clean_architecture/presentation/cubit/user/user_cubit.dart';
 import 'package:clean_architecture/presentation/pages/create_user_screen.dart';
 import 'package:clean_architecture/presentation/pages/list_comment_screen.dart';
+import 'package:clean_architecture/presentation/pages/list_user_screen.dart';
 import 'package:clean_architecture/presentation/pages/post_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -43,6 +44,9 @@ class MyApp extends StatelessWidget {
             case MyRoutes.listCommentPage:
               return MaterialPageRoute(
                   builder: (_) => const ListCommentScreen());
+            case MyRoutes.listUserPage:
+              return MaterialPageRoute(
+                  builder: (_) => const ListUserScreen());
             default:
               return MaterialPageRoute(
                   builder: (_) => Container(

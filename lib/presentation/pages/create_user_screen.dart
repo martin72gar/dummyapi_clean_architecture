@@ -117,6 +117,7 @@ class CreateUserScreen extends StatelessWidget {
             FilledButton(
               onPressed: () {
                 debugPrint("users");
+                Navigator.pushNamed(context, MyRoutes.listUserPage);
               },
               child: Text("Users"),
             ),
