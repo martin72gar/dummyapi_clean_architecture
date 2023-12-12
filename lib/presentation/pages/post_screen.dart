@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:clean_architecture/injection.dart' as get_it;
 
+import '../../common/custom_loading.dart';
+
 class PostScreen extends StatelessWidget {
   const PostScreen({super.key});
 
@@ -22,7 +24,7 @@ class PostScreen extends StatelessWidget {
         child: BlocBuilder<PostCubit, PostState>(
           builder: (context, state) {
             if (state is PostLoading) {
-              return CircularProgressIndicator();
+              return const CustomLoading();
             }
 
             if (state is PostLoaded) {

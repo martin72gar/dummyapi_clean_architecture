@@ -130,6 +130,7 @@ class CreateUserScreen extends StatelessWidget {
             FilledButton(
               onPressed: () {
                 debugPrint("comments");
+                Navigator.pushNamed(context, MyRoutes.listCommentPage);
               },
               child: Text("Comments"),
             ),
