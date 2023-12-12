@@ -23,8 +23,8 @@ class GetUserListUseCase extends UserUseCaseBase {
 class GetUserDetailUseCase extends UserUseCaseBase {
   GetUserDetailUseCase(super.userBaseRepository);
 
-  Future<Either<String, UserDetailEntity>> call() async {
-    return await userBaseRepository.getUserDetail();
+  Future<Either<String, UserDetailEntity>> call(String id) async {
+    return await userBaseRepository.getUserDetail(id);
   }
 }
 

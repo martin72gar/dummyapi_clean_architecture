@@ -74,9 +74,9 @@ class RemoteDataImpl implements RemoteData {
   }
 
   @override
-  Future<UserDetailModel> userDetailModel() async {
+  Future<UserDetailModel> userDetailModel(String id) async {
     final request = await http.get(
-      Uri.parse('${Const.baseURL}user/6572c2c979dd15bed8c1c8d6'),
+      Uri.parse('${Const.baseURL}user/$id'),
       headers: {'app-id': Const.appId},
     );
 

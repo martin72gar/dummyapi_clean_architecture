@@ -34,8 +34,9 @@ class UserCubit extends Cubit<UserState> {
     });
   }
 
-  getUserDetail() async {
-    final result = await getUserDetailUseCase.call();
+  getUserDetail(String id) async {
+    emit(const UserDetailLoading(EnumStatus.loading));
+    final result = await getUserDetailUseCase.call(id);
     result.fold((l) {
       emit(UserDetailError(l.toString(), EnumStatus.error));
     }, (r) {

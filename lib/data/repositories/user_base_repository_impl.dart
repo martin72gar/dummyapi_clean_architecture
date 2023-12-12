@@ -33,9 +33,9 @@ class UserBaseRepositoryImpl implements UserBaseRepository{
   }
 
   @override
-  Future<Either<String, UserDetailEntity>> getUserDetail() async {
+  Future<Either<String, UserDetailEntity>> getUserDetail(String id) async {
     try {
-      final result = await remoteDataImpl.userDetailModel();
+      final result = await remoteDataImpl.userDetailModel(id);
       return Right(result.toEntity());
     } catch(e) {
       return Left(e.toString());

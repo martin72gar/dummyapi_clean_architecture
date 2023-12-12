@@ -13,7 +13,7 @@ abstract class RemoteData {
 
   Future<List<CommentModel>> listCommentModel();
 
-  Future<UserDetailModel> userDetailModel();
+  Future<UserDetailModel> userDetailModel(String id);
 
   Future<dynamic> createUserModel(
       CreateUserRequestModel userRequestModel);

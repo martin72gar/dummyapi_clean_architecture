@@ -3,9 +3,10 @@ import 'package:clean_architecture/presentation/cubit/comment/comment_cubit.dart
 import 'package:clean_architecture/presentation/cubit/post/post_cubit.dart';
 import 'package:clean_architecture/presentation/cubit/user/user_cubit.dart';
 import 'package:clean_architecture/presentation/pages/create_user_screen.dart';
+import 'package:clean_architecture/presentation/pages/detail_user_screen.dart';
 import 'package:clean_architecture/presentation/pages/list_comment_screen.dart';
 import 'package:clean_architecture/presentation/pages/list_user_screen.dart';
-import 'package:clean_architecture/presentation/pages/post_screen.dart';
+import 'package:clean_architecture/presentation/pages/list_post_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:clean_architecture/injection.dart' as get_it;
@@ -40,13 +41,16 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: (routes) {
           switch (routes.name) {
             case MyRoutes.listPostPage:
-              return MaterialPageRoute(builder: (_) => const PostScreen());
+              return MaterialPageRoute(builder: (_) => const ListPostScreen());
             case MyRoutes.listCommentPage:
               return MaterialPageRoute(
                   builder: (_) => const ListCommentScreen());
             case MyRoutes.listUserPage:
+              return MaterialPageRoute(builder: (_) => const ListUserScreen());
+            case MyRoutes.detailUserPage:
+              final id = routes.arguments as Map;
               return MaterialPageRoute(
-                  builder: (_) => const ListUserScreen());
+                  builder: (_) => DetailUserScreen(id: id['id']));
             default:
               return MaterialPageRoute(
                   builder: (_) => Container(

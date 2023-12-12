@@ -30,6 +30,12 @@ final class UserListError extends UserState {
   const UserListError(this.message, this.enumStatus);
 }
 
+final class UserDetailLoading extends UserState {
+  final EnumStatus enumStatus;
+
+  const UserDetailLoading(this.enumStatus);
+}
+
 final class UserDetailLoaded extends UserState {
   final UserDetailEntity user;
   final String message;

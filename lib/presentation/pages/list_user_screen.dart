@@ -1,4 +1,5 @@
 import 'package:clean_architecture/common/custom_loading.dart';
+import 'package:clean_architecture/common/my_routes.dart';
 import 'package:clean_architecture/domain/entities/user_entity.dart';
 import 'package:clean_architecture/presentation/cubit/user/user_cubit.dart';
 import 'package:flutter/material.dart';
@@ -31,28 +32,34 @@ class ListUserScreen extends StatelessWidget {
                   itemCount: state.list.length,
                   itemBuilder: (BuildContext context, int index) {
                     UserEntity data = state.list[index];
-                    return Container(
-                      margin: EdgeInsets.symmetric(horizontal: 16),
-                      padding: EdgeInsets.all(8),
-                      child: Row(
-                        children: [
-                          Image.network(
-                            data.picture,
-                            width: 100,
-                            height: 126,
-                            fit: BoxFit.cover,
-                          ),
-                          SizedBox(width: 10),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("${data.firstName} ${data.lastName}"),
-                                Text("title: ${data.title}")
-                              ],
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, MyRoutes.detailUserPage,
+                            arguments: {"id": data.id});
+                      },
+                      child: Container(
+                        margin: EdgeInsets.symmetric(horizontal: 16),
+                        padding: EdgeInsets.all(8),
+                        child: Row(
+                          children: [
+                            Image.network(
+                              data.picture,
+                              width: 100,
+                              height: 126,
+                              fit: BoxFit.cover,
                             ),
-                          ),
-                        ],
+                            SizedBox(width: 10),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("${data.firstName} ${data.lastName}"),
+                                  Text("title: ${data.title}")
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   });

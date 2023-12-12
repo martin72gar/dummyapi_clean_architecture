@@ -6,8 +6,8 @@ import 'package:clean_architecture/injection.dart' as get_it;
 
 import '../../common/custom_loading.dart';
 
-class PostScreen extends StatelessWidget {
-  const PostScreen({super.key});
+class ListPostScreen extends StatelessWidget {
+  const ListPostScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -7,6 +7,6 @@ import '../entities/user_detail_entity.dart';
 
 abstract class UserBaseRepository {
   Future<Either<String, List<UserEntity>>> getUserList();
-  Future<Either<String, UserDetailEntity>> getUserDetail();
+  Future<Either<String, UserDetailEntity>> getUserDetail(String id);
   Future<Either<String, CreateUserEntity>> createUser(CreateUserRequestModel curm);
 }
