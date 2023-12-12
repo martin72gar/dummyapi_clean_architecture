@@ -30,16 +30,27 @@ class PostScreen extends StatelessWidget {
                   itemCount: state.list.length,
                   itemBuilder: (BuildContext context, int index) {
                     PostEntity data = state.list[index];
-                    return Row(
-                      children: [
-                        Image.network(
-                          data.image,
-                          width: 150,
-                          height: 150,
-                        ),
-                        Text(data.owner.firstName),
-                        Expanded(child: Text(data.text)),
-                      ],
+                    return Container(
+                      margin: EdgeInsets.symmetric(horizontal: 16),
+                      padding: EdgeInsets.all(8),
+                      child: Row(
+                        children: [
+                          Image.network(
+                            data.image,
+                            width: 100,
+                            height: 126,
+                            fit: BoxFit.cover,
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(data.text),
+                              Text("Posted by: ${data.owner.firstName}", style: TextStyle(fontWeight: FontWeight.w500),)
+                            ],
+                          )),
+                        ],
+                      ),
                     );
                   });
             }
