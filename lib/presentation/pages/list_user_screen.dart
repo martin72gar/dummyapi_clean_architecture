@@ -20,7 +20,7 @@ class ListUserScreen extends StatelessWidget {
         backgroundColor: Colors.white70,
       ),
       body: BlocProvider(
-        create: (_) => get_it.locator<UserCubit>()..getUserList(),
+        create: (_) => get_it.locator<UserCubit>()..getUserList("0"),
         child: BlocBuilder<UserCubit, UserState>(
           builder: (context, state) {
             if (state is UserListLoading) {

@@ -7,11 +7,11 @@ import '../model/request/create_user_request_model.dart';
 import '../model/user_detail_model.dart';
 
 abstract class RemoteData {
-  Future<List<UserModel>> listUserModel();
+  Future<List<UserModel>> listUserModel(String page);
 
-  Future<List<PostModel>> listPostModel();
+  Future<List<PostModel>> listPostModel(String page);
 
-  Future<List<CommentModel>> listCommentModel();
+  Future<List<CommentModel>> listCommentModel(String page);
 
   Future<UserDetailModel> userDetailModel(String id);
 

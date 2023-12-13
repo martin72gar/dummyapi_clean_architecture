@@ -14,6 +14,9 @@ import 'package:clean_architecture/presentation/cubit/post/post_cubit.dart';
 import 'package:clean_architecture/presentation/cubit/user/user_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+
+import 'common/errors/network_info.dart';
 
 final locator = GetIt.instance;
 
@@ -22,7 +25,7 @@ void initialize() {
   locator.registerFactory<UserBaseRepository>(
       () => UserBaseRepositoryImpl(locator()));
   locator.registerFactory<PostBaseRepository>(
-      () => PostBaseRepositoryImpl(locator()));
+      () => PostBaseRepositoryImpl(locator(), locator()));
   locator.registerFactory<CommentBaseRepository>(
       () => CommentBaseRepositoryImpl(locator()));
 
@@ -43,4 +46,7 @@ void initialize() {
 
   //external library
   locator.registerFactory(() => Client());
+  locator.registerLazySingleton<NetworkInfo>(
+        () => NetworkInfoImpl(internetConnectionChecker: InternetConnectionChecker()),
+  );
 }

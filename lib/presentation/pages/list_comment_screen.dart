@@ -19,7 +19,7 @@ class ListCommentScreen extends StatelessWidget {
         backgroundColor: Colors.white70,
       ),
       body: BlocProvider(
-        create: (_) => get_it.locator<CommentCubit>()..getCommentList(),
+        create: (_) => get_it.locator<CommentCubit>()..getCommentList("0"),
         child: BlocBuilder<CommentCubit, CommentState>(
           builder: (context, state) {
             if (state is CommentLoading) {

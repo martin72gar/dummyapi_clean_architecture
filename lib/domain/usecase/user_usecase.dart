@@ -15,8 +15,8 @@ abstract class UserUseCaseBase {
 class GetUserListUseCase extends UserUseCaseBase {
   GetUserListUseCase(super.userBaseRepository);
 
-  Future<Either<String, List<UserEntity>>> call() async {
-    return await userBaseRepository.getUserList();
+  Future<Either<String, List<UserEntity>>> call(String page) async {
+    return await userBaseRepository.getUserList(page);
   }
 }
 

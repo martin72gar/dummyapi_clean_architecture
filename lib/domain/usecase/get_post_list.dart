@@ -7,7 +7,7 @@ class GetPostListUsecase {
 
   GetPostListUsecase(this.postBaseRepository);
 
-  Future<Either<String, List<PostEntity>>> fetchPostList() {
-    return postBaseRepository.getListPost();
+  Future<Either<String, List<PostEntity>>> fetchPostList(String page) {
+    return postBaseRepository.getListPost(page);
   }
 }

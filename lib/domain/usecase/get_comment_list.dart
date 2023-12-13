@@ -7,7 +7,7 @@ class GetCommentListUsecase {
 
   GetCommentListUsecase(this.commentBaseRepository);
 
-  Future<Either<String, List<CommentEntity>>> fetchCommentList() {
-    return commentBaseRepository.getListComment();
+  Future<Either<String, List<CommentEntity>>> fetchCommentList(String page) {
+    return commentBaseRepository.getListComment(page);
   }
 }

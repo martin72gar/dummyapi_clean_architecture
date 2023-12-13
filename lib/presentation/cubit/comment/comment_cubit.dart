@@ -11,9 +11,9 @@ class CommentCubit extends Cubit<CommentState> {
 
   CommentCubit(this.getCommentListUsecase) : super(CommentInitial());
 
-  getCommentList() async {
+  getCommentList(String page) async {
     emit(const CommentLoading(EnumStatus.loading));
-    final result = await getCommentListUsecase.fetchCommentList();
+    final result = await getCommentListUsecase.fetchCommentList(page);
     result.fold((l) {
       emit(CommentError(l.toString()));
     }, (r) {

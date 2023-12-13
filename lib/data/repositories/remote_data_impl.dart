@@ -36,9 +36,9 @@ class RemoteDataImpl implements RemoteData {
   }
 
   @override
-  Future<List<CommentModel>> listCommentModel() async {
+  Future<List<CommentModel>> listCommentModel(String page) async {
     final request = await http.get(
-      Uri.parse('${Const.baseURL}comment?page=1&limit=10'),
+      Uri.parse('${Const.baseURL}comment?page=$page&limit=15'),
       headers: {'app-id': Const.appId},
     );
 
@@ -48,22 +48,24 @@ class RemoteDataImpl implements RemoteData {
   }
 
   @override
-  Future<List<PostModel>> listPostModel() async {
+  Future<List<PostModel>> listPostModel(String page) async {
+    log("post page $page");
     final request = await http.get(
-      Uri.parse('${Const.baseURL}post?page=1&limit=10'),
+      Uri.parse('${Const.baseURL}post?page=2&limit=15'),
       headers: {'app-id': Const.appId},
     );
 
     final response = jsonDecode(request.body);
     final List data = response['data'];
+    log("post response: $response");
 
     return data.map((e) => PostModel.fromJson(e)).toList();
   }
 
   @override
-  Future<List<UserModel>> listUserModel() async {
+  Future<List<UserModel>> listUserModel(String page) async {
     final request = await http.get(
-      Uri.parse('${Const.baseURL}user?page=0&limit=10'),
+      Uri.parse('${Const.baseURL}user?page=$page&limit=15'),
       headers: {'app-id': Const.appId},
     );
 

@@ -5,7 +5,6 @@ import 'package:clean_architecture/domain/entities/user_detail_entity.dart';
 import 'package:clean_architecture/domain/entities/user_entity.dart';
 import 'package:clean_architecture/domain/usecase/user_usecase.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../common/enum_status.dart';
@@ -24,9 +23,9 @@ class UserCubit extends Cubit<UserState> {
       this.createUserUseCase)
       : super(UserInitial());
 
-  getUserList() async {
+  getUserList(String page) async {
     emit(const UserListLoading(EnumStatus.loading));
-    final result = await getUserListUseCase.call();
+    final result = await getUserListUseCase.call(page);
     result.fold((l) {
       emit(UserListError(l.toString(), EnumStatus.error));
     }, (r) {

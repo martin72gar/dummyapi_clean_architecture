@@ -43,9 +43,9 @@ class UserBaseRepositoryImpl implements UserBaseRepository{
   }
 
   @override
-  Future<Either<String, List<UserEntity>>> getUserList() async {
+  Future<Either<String, List<UserEntity>>> getUserList(String page) async {
     try {
-      final result = await remoteDataImpl.listUserModel();
+      final result = await remoteDataImpl.listUserModel(page);
       return Right(result.map((e) => e.toEntity()).toList());
     } catch(e) {
       return Left(e.toString());

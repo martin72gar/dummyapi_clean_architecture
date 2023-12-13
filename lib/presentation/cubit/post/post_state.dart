@@ -19,8 +19,9 @@ final class PostLoaded extends PostState {
   final List<PostEntity> list;
   final String message;
   final EnumStatus enumStatus;
+  final String page;
 
-  PostLoaded(this.list, this.message, this.enumStatus);
+  PostLoaded(this.list, this.message, this.enumStatus, this.page);
 }
 
 final class PostError extends PostState {

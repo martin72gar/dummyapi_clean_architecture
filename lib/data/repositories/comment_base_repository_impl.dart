@@ -10,9 +10,9 @@ class CommentBaseRepositoryImpl implements CommentBaseRepository {
   CommentBaseRepositoryImpl(this.remoteDataImpl);
 
   @override
-  Future<Either<String, List<CommentEntity>>> getListComment() async {
+  Future<Either<String, List<CommentEntity>>> getListComment(String page) async {
     try {
-      final result = await remoteDataImpl.listCommentModel();
+      final result = await remoteDataImpl.listCommentModel(page);
       return Right(result.map((e) => e.toEntity()).toList());
     } catch(e) {
       return Left(e.toString());
