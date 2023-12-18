@@ -11,21 +11,22 @@ final class PostInitial extends PostState {}
 
 final class PostLoading extends PostState {
   final EnumStatus enumStatus;
+  final List<PostEntity> list;
 
-  const PostLoading(this.enumStatus);
+  const PostLoading(this.enumStatus, this.list);
 }
 
 final class PostLoaded extends PostState {
   final List<PostEntity> list;
   final String message;
   final EnumStatus enumStatus;
-  final String page;
+  final int page;
 
-  PostLoaded(this.list, this.message, this.enumStatus, this.page);
+  const PostLoaded(this.list, this.message, this.enumStatus, {this.page = 0});
 }
 
 final class PostError extends PostState {
   final String message;
 
-  PostError(this.message);
+  const PostError(this.message);
 }

@@ -22,19 +22,18 @@ class ListPostScreen extends StatelessWidget {
         backgroundColor: Colors.white70,
       ),
       body: BlocProvider(
-        create: (_) => get_it.locator<PostCubit>()..getPostList("0"),
+        create: (_) => get_it.locator<PostCubit>()..getPostList(),
         child: BlocBuilder<PostCubit, PostState>(
           builder: (context, state) {
-            if (state is PostLoading) {
-              return const CustomLoading();
-            }
 
             if (state is PostLoaded) {
+              debugPrint("PostLoaded: ${state.message}");
               return SmartRefresher(
                 controller: PostCubit.controller,
-                enablePullUp: true,
                 enablePullDown: true,
-
+                enablePullUp: true,
+                onRefresh: () => context.read<PostCubit>()..getRefresh(),
+                onLoading: () => context.read<PostCubit>()..getLoadMore(state.list, state.page),
                 child: ListView.builder(
                     itemCount: state.list.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -51,11 +50,15 @@ class ListPostScreen extends StatelessWidget {
                               fit: BoxFit.cover,
                             ),
                             SizedBox(width: 10),
-                            Expanded(child: Column(
+                            Expanded(
+                                child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(data.text),
-                                Text("Posted by: ${data.owner.firstName}", style: TextStyle(fontWeight: FontWeight.w500),)
+                                Text(
+                                  "Posted by: ${data.owner.firstName}",
+                                  style: TextStyle(fontWeight: FontWeight.w500),
+                                )
                               ],
                             )),
                           ],
@@ -68,13 +71,11 @@ class ListPostScreen extends StatelessWidget {
             if (state is PostError) {
               // showCustomSnackbar(state.message); //only works if using Get
               return Container(
-                margin: EdgeInsets.symmetric(horizontal: 16),
+                  margin: EdgeInsets.symmetric(horizontal: 16),
                   child: Text("Error: ${state.message}"));
             }
 
-            return Container(
-              child: Text("Post S"),
-            );
+            return Center(child: CircularProgressIndicator());
           },
         ),
       ),

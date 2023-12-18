@@ -49,15 +49,13 @@ class RemoteDataImpl implements RemoteData {
 
   @override
   Future<List<PostModel>> listPostModel(String page) async {
-    log("post page $page");
     final request = await http.get(
-      Uri.parse('${Const.baseURL}post?page=2&limit=15'),
+      Uri.parse('${Const.baseURL}post?page=$page&limit=5'),
       headers: {'app-id': Const.appId},
     );
 
     final response = jsonDecode(request.body);
     final List data = response['data'];
-    log("post response: $response");
 
     return data.map((e) => PostModel.fromJson(e)).toList();
   }
