@@ -15,7 +15,7 @@ abstract class UserUseCaseBase {
 class GetUserListUseCase extends UserUseCaseBase {
   GetUserListUseCase(super.userBaseRepository);
 
-  Future<Either<String, List<UserEntity>>> call(String page) async {
+  Future<Either<String, List<UserEntity>>> callUserList(String page) async {
     return await userBaseRepository.getUserList(page);
   }
 }
@@ -23,7 +23,7 @@ class GetUserListUseCase extends UserUseCaseBase {
 class GetUserDetailUseCase extends UserUseCaseBase {
   GetUserDetailUseCase(super.userBaseRepository);
 
-  Future<Either<String, UserDetailEntity>> call(String id) async {
+  Future<Either<String, UserDetailEntity>> callUserDetail(String id) async {
     return await userBaseRepository.getUserDetail(id);
   }
 }
@@ -31,7 +31,7 @@ class GetUserDetailUseCase extends UserUseCaseBase {
 class CreateUseUseCase extends UserUseCaseBase {
   CreateUseUseCase(super.userBaseRepository);
 
-  Future<Either<String, CreateUserEntity>> call(CreateUserRequestModel curm) async {
+  Future<Either<String, CreateUserEntity>> callCreateUser(CreateUserRequestModel curm) async {
     return await userBaseRepository.createUser(curm);
   }
 }

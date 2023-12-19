@@ -19,8 +19,9 @@ final class UserListLoaded extends UserState {
   final List<UserEntity> list;
   final String message;
   final EnumStatus enumStatus;
+  final int page;
 
-  const UserListLoaded(this.list, this.message, this.enumStatus);
+  const UserListLoaded(this.list, this.message, this.enumStatus, {this.page = 0});
 }
 
 final class UserListError extends UserState {
