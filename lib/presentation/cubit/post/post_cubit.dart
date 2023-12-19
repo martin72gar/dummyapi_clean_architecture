@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:clean_architecture/domain/entities/post_entity.dart';
 import 'package:clean_architecture/domain/usecase/get_post_list.dart';
@@ -17,13 +15,11 @@ class PostCubit extends Cubit<PostState> {
   static final controller = RefreshController();
 
   getPostList() async {
-    log("current page: 0");
     final result = await getPostListUsecase.fetchPostList("0");
     result.fold((l) {
       emit(PostError(l.toString()));
       controller.refreshCompleted();
     }, (r) {
-      log("length first load: ${r.length}");
       emit(PostLoaded(r, "First Load Post"));
       controller.refreshCompleted();
     });
@@ -35,12 +31,11 @@ class PostCubit extends Cubit<PostState> {
     getPostList();
   }
 
-  getLoadMore(List<PostEntity> oldList, int page) async {
+  getLoadMore() async {
     var myState = state as PostLoaded;
-    final newList = oldList;
+    final newList = myState.list;
     int pageNext = myState.page + 1;
 
-    log("getLoadMore next page: $pageNext");
     final result = await getPostListUsecase.fetchPostList(pageNext.toString());
     result.fold((l) {
       emit(PostError(l.toString()));
@@ -48,7 +43,6 @@ class PostCubit extends Cubit<PostState> {
     }, (r) {
       newList.addAll(r);
       emit(PostLoading(EnumStatus.loaded));
-      log("data: ${r.first.owner} of ${newList.length}");
       emit(PostLoaded(newList, "Load More Post", page: pageNext));
       controller.loadComplete();
     });

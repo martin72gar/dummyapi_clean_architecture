@@ -60,10 +60,10 @@ class OwnerModel extends Equatable {
 
   OwnerModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    title = json['title'];
+    title = json['title'] ?? '';
     firstName = json['firstName'];
     lastName = json['lastName'];
-    picture = json['picture'];
+    picture = json['picture'] ?? '';
   }
 
   OwnerEntity toEntity() => OwnerEntity(

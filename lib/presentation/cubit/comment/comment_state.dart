@@ -19,8 +19,9 @@ final class CommentLoaded extends CommentState {
   final List<CommentEntity> list;
   final String message;
   final EnumStatus enumStatus;
+  final int page;
 
-  const CommentLoaded(this.list, this.message, this.enumStatus);
+  const CommentLoaded(this.list, this.message, this.enumStatus, {this.page = 0});
 }
 
 final class CommentError extends CommentState {

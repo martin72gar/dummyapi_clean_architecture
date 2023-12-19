@@ -41,6 +41,7 @@ class RemoteDataImpl implements RemoteData {
       Uri.parse('${Const.baseURL}comment?page=$page&limit=15'),
       headers: {'app-id': Const.appId},
     );
+    log("result request: ${request.body}");
 
     final response = jsonDecode(request.body);
     final List data = response['data'];

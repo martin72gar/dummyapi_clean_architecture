@@ -15,7 +15,7 @@ class ListPostScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Posts",
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
@@ -26,14 +26,12 @@ class ListPostScreen extends StatelessWidget {
         child: BlocBuilder<PostCubit, PostState>(
           builder: (context, state) {
             if (state is PostLoaded) {
-              debugPrint("PostLoaded builder: ${state.message}");
               return SmartRefresher(
                 controller: PostCubit.controller,
                 enablePullDown: true,
                 enablePullUp: true,
                 onRefresh: () => context.read<PostCubit>()..getRefresh(),
-                onLoading: () => context.read<PostCubit>()
-                  ..getLoadMore(state.list, state.page),
+                onLoading: () => context.read<PostCubit>()..getLoadMore(),
                 child: ListView.builder(
                     itemCount: state.list.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -75,7 +73,7 @@ class ListPostScreen extends StatelessWidget {
                   child: Text("Error: ${state.message}"));
             }
 
-            return const Center(child: CircularProgressIndicator());
+            return const CustomLoading();
           },
         ),
       ),
