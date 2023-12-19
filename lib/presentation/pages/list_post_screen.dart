@@ -25,15 +25,15 @@ class ListPostScreen extends StatelessWidget {
         create: (_) => get_it.locator<PostCubit>()..getPostList(),
         child: BlocBuilder<PostCubit, PostState>(
           builder: (context, state) {
-
             if (state is PostLoaded) {
-              debugPrint("PostLoaded: ${state.message}");
+              debugPrint("PostLoaded builder: ${state.message}");
               return SmartRefresher(
                 controller: PostCubit.controller,
                 enablePullDown: true,
                 enablePullUp: true,
                 onRefresh: () => context.read<PostCubit>()..getRefresh(),
-                onLoading: () => context.read<PostCubit>()..getLoadMore(state.list, state.page),
+                onLoading: () => context.read<PostCubit>()
+                  ..getLoadMore(state.list, state.page),
                 child: ListView.builder(
                     itemCount: state.list.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -75,7 +75,7 @@ class ListPostScreen extends StatelessWidget {
                   child: Text("Error: ${state.message}"));
             }
 
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           },
         ),
       ),

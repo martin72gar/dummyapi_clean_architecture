@@ -24,20 +24,21 @@ class PostCubit extends Cubit<PostState> {
       controller.refreshCompleted();
     }, (r) {
       log("length first load: ${r.length}");
-      emit(PostLoaded(r, "First Load Post", EnumStatus.loaded));
+      emit(PostLoaded(r, "First Load Post"));
       controller.refreshCompleted();
     });
   }
 
   getRefresh() {
+    emit(PostLoaded([], "Post Data refreshed"));
+    emit(PostLoading(EnumStatus.loaded));
     getPostList();
   }
 
-  int pageNext = 1;
   getLoadMore(List<PostEntity> oldList, int page) async {
-    List<PostEntity> list = oldList;
-
-    pageNext++;
+    var myState = state as PostLoaded;
+    final newList = oldList;
+    int pageNext = myState.page + 1;
 
     log("getLoadMore next page: $pageNext");
     final result = await getPostListUsecase.fetchPostList(pageNext.toString());
@@ -45,10 +46,10 @@ class PostCubit extends Cubit<PostState> {
       emit(PostError(l.toString()));
       controller.loadComplete();
     }, (r) {
-      list.addAll(r);
-      log("data: ${r.first.owner} of ${list.length}");
-      emit(PostLoaded(r, "Load More Post", EnumStatus.loaded,
-          page: pageNext));
+      newList.addAll(r);
+      emit(PostLoading(EnumStatus.loaded));
+      log("data: ${r.first.owner} of ${newList.length}");
+      emit(PostLoaded(newList, "Load More Post", page: pageNext));
       controller.loadComplete();
     });
   }
